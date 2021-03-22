@@ -1,0 +1,73 @@
+Interpret scroes, loadings and explainned variance
+	- The scores graph shows us how much of the variance is explained by each principal component. 
+	We can see that PC1 describes 97% of the variance and PC2 explains 3% of the total variance. We can also see 
+	a scatter plot of the data in the PC1 and PC2 frame. 
+	- The loadings graph shows us how much of each variable makes up the principal components. We see that PC1 
+	is mostly a linear combination of -0.867*RadTop and -0.499*RadSurface. PC2 is a linear combination of Mostly RadTop and RadSurface
+	as well. 
+	- The Explained Variance graph shows us the cummulative explained variance as a function of the Principal components
+	We can see that PC1 and PC2 together explains 99.84% of the total variance. 
+
+Explain why the plot has changed
+	- We cannot tell from the first Lodaings plot if a certain variable is an important variable. Because the scaling
+	is such the the norm of each lodaing vector is one
+	- Once we changed to the correlation loadings we could see the explained variance because correlation squared
+	is explained variance. Now we can see that for example for IrrDiffuse, 0.9135^2 = 0.834, so 83% of the variance
+	of IrrDiccuse is explained in PC1. 
+
+We will set the weights to 1/std.dev with random cross validation
+Interpret the model again
+	- The model changed completelly. Now PC1 only accounts for 42% of the total variation and PC2 accounts for
+	16% of the total variation. The distribution of the points also look completelly different. 
+	- Looking at the Correlation loading, we can also see that the linear combination of the variables have also changed
+	for each PC. 
+	- Too catch 80% of the total variation we would need to 4 principal components. 
+
+
+Change to scores to line plot and zoom in to see daily systematic pattern
+	- We can see that there are very large daily fluctuations from day to day
+
+
+Will now try other cross validation setups
+systematic(111 222 333) and category variables(day/night,month)
+
+Compare the explained validation variance for these models
+	- We see that the validation variance for systematic(11 22 33) is the best. The validation variance for 
+	categoric(month) is slightly worse than for systematic. The validation variance of categoric(day/night) is
+	terrible and forms an arc. It get better up till pc3 and then worse as we increase the number of pcs.
+
+Decide on the optimal number of components
+	- To catch 80% of the total variation we need 6 principal components for the random CV model.
+	- TO catch 80% of the total variation we need 7 principal components for the systematic(11 22 33) and
+	categoric(month)
+	- It is not possible to catch 80% of the total variation for the categoric(day/night) model. 
+
+Look into Hoteling's T^2 and F-residual plots if there are any outliers
+	- The influence plot gives us the plot of Hoteling's T^2 and F-residual plots together. Looking at this plot
+	for four principal compnents, we can see that there are a lot of outliers. 
+
+
+
+
+Discuss if it is conceptually viable to include year, month and/or day/night if purpose is to project new samles onto
+a traning model for etecting changes in the x-variable
+	- We can see once we have made a model based on the column set "X incl day_night year and month" that we need
+	7 principal components to capture 80% of the explained validation variance. This might bee too many principal
+	components for it to be a viable option
+
+Project the row set 2017 onto the model i select to be best
+	- I think the random CV model is the best model
+
+
+See if the projected samples are within the ciritcal limits from the 2016 data	
+	- To me it sems like all the projected data are within the critical limits from the 2016 data
+
+
+Make a model on all data and cross validation over year
+	- Done
+
+
+
+
+
+
